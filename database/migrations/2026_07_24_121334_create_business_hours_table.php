@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Address;
+use App\Models\Vet;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,17 +12,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vets', function (Blueprint $table) {
+        Schema::create('business_hours', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Address::class, 'physical_address_id')->constrained();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
+            $table->foreignIdFor(Vet::class)->constrained();
             $table->string('type');
-            $table->string('website');
-            $table->string('abn');
-            $table->string('timezone');
+            $table->unsignedInteger('day_of_week');
+            $table->time('open_time');
+            $table->time('close_time');
             $table->timestamps();
+
+            $table->unique([
+                'vet_id',
+                'type',
+                'day_of_week',
+            ]);
         });
     }
 
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vets');
+        Schema::dropIfExists('business_hours');
     }
 };
