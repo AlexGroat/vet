@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers\Filament;
+namespace App\Providers\Filament\app;
 
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -25,7 +25,8 @@ class AppPanelProvider extends PanelProvider
     {
         return $panel
             ->id('app')
-            ->path('app')
+            ->path('')
+            ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])
