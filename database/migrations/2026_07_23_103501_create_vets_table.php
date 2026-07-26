@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('vets', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Address::class, 'physical_address_id')->constrained();
+            $table->foreignIdFor(Address::class, 'postal_address_id')->nullable()->constrained();
             $table->string('name');
             $table->string('email');
             $table->string('phone');
