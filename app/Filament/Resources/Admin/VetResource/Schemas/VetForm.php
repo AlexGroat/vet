@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Admin\VetResource\Schemas;
 
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class VetForm
@@ -11,17 +12,21 @@ class VetForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+                Section::make('Details')
+                    ->schema([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
 
-                TextInput::make('email')
-                    ->email()
-                    ->maxLength(255),
+                        TextInput::make('email')
+                            ->email()
+                            ->maxLength(255),
 
-                TextInput::make('phone')
-                    ->tel()
-                    ->maxLength(50),
+                        TextInput::make('phone')
+                            ->tel()
+                            ->maxLength(50),
+                    ])
+
             ]);
     }
 }
