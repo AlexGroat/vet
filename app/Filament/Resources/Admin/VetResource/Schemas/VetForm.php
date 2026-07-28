@@ -26,6 +26,7 @@ class VetForm
                             ->tel()
                             ->maxLength(50),
                     ])
+                    ->columns(2)
 
             ]);
     }
